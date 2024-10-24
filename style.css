@@ -1,0 +1,149 @@
+:root {
+    --text-color: #ffffff;
+    --card-front-color: #FF6F61; /* Coral vibrante */
+    --card-back-color: #6B5B95; /* Roxo profundo */
+    --background-color: linear-gradient(135deg, #88B04B, #F7CAC9); /* Gradiente verde menta e rosa pastel */
+    --highlight-color: #FFD700; /* Amarelo dourado */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background: var(--background-color);
+    font-family: 'Bai Jamjuree', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#container {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3rem;
+    gap: 2.5rem;
+}
+
+.cartao {
+    height: 18rem;
+    width: 14rem;
+    perspective: 1000px; /* Cria um efeito 3D para a rotação */
+    cursor: pointer;
+}
+
+.cartao__conteudo {
+    background-color: var(--card-front-color);
+    color: var(--text-color);
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px var(--shadow-color);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.cartao__conteudo h3 {
+    background-color: var(--highlight-color);
+    color: var(--card-back-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 10px;
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.cartao__conteudo__pergunta,
+.cartao__conteudo__resposta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1rem;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.cartao__conteudo__pergunta {
+    background-color: var(--card-front-color);
+    font-weight: 600;
+}
+
+.cartao__conteudo__resposta {
+    background-color: var(--card-back-color);
+    color: var(--highlight-color);
+    transform: rotateY(180deg);
+    font-weight: bold;
+}
+
+.cartao.active .cartao__conteudo {
+    transform: rotateY(180deg);
+}
+
+footer {
+    background-color: #444;
+    color: #f0f0f0;
+    text-align: center;
+    padding: 0.5rem 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    #container {
+        padding: 2rem;
+    }
+
+    .cartao {
+        height: 16rem;
+        width: 12rem;
+    }
+
+    .cartao__conteudo h3 {
+        font-size: 0.9rem;
+    }
+
+    .cartao__conteudo__pergunta,
+    .cartao__conteudo__resposta {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cartao {
+        height: 14rem;
+        width: 10rem;
+    }
+
+    .cartao__conteudo h3 {
+        font-size: 0.8rem;
+    }
+
+    .cartao__conteudo__pergunta,
+    .cartao__conteudo__resposta {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+}
